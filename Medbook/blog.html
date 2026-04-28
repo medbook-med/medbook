@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedBook - Блог</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">MedBook</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Басты бет</a></li>
+                <li class="nav-item"><a class="nav-link" href="doctors.html">Дәрігерлер</a></li>
+                <li class="nav-item"><a class="nav-link active" href="blog.html">Блог</a></li>
+                <li class="nav-item"><a class="nav-link" href="#footer" onclick="scrollToFooter()">Байланыс</a></li>
+            </ul>
+            <div class="d-flex align-items-center">
+                <button id="darkModeToggle" class="btn btn-outline-secondary me-2">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn btn-outline-primary me-2" onclick="openAuthModal()">Кіру</button>
+                <span id="userNameDisplay" class="align-self-center text-success fw-bold me-2" style="display:none;"></span>
+                <button id="profileBtn" class="btn btn-outline-secondary" onclick="viewProfile()" style="display:none;">Профиль</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="blog-page py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Медициналық блог</h1>
+        <div class="row g-4" id="blogPosts"></div>
+    </div>
+</section>
+
+<!-- АВТОРИЗАЦИЯ МОДАЛЬДЫ ТЕРЕЗЕСІ -->
+<div class="modal fade" id="authModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content auth-modal">
+            <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body text-center">
+                <h3 class="mb-4">MedBook</h3>
+                <div class="role-buttons">
+                    <button class="btn-role" onclick="selectRole('patient')"><i class="fas fa-user-injured fa-2x mb-2"></i><span>Науқас</span></button>
+                    <button class="btn-role" onclick="selectRole('doctor')"><i class="fas fa-user-md fa-2x mb-2"></i><span>Дәрігер</span></button>
+                </div>
+                <div class="auth-tabs mt-4">
+                    <button class="auth-tab active" onclick="switchAuthTab('login')">Кіру</button>
+                    <button class="auth-tab" onclick="switchAuthTab('register')">Тіркелу</button>
+                </div>
+                <form id="loginFormModal" class="auth-form active">
+                    <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Email" required>
+                    <input type="password" id="loginPassword" class="form-control mb-3" placeholder="Құпия сөз" required>
+                    <button type="submit" class="btn btn-primary w-100">Кіру</button>
+                </form>
+                <form id="registerFormModal" class="auth-form">
+                    <input type="text" id="regName" class="form-control mb-3" placeholder="Аты-жөні" required>
+                    <input type="email" id="regEmail" class="form-control mb-3" placeholder="Email" required>
+                    <input type="tel" id="regPhone" class="form-control mb-3" placeholder="Телефон нөмірі" required>
+                    <input type="password" id="regPassword" class="form-control mb-3" placeholder="Құпия сөз" required>
+                    <button type="submit" class="btn btn-primary w-100">Тіркелу</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="profileModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title">Менің профилім</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body" id="profileContent"></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4"><h5>MedBook</h5><p>Денсаулыққа қолжетімді шешімдер</p><p><i class="fas fa-phone"></i> +7 702 316 96 51</p><p><i class="fas fa-envelope"></i> info@medbook.kz</p></div>
+            <div class="col-md-4 mb-4"><h5>Сілтемелер</h5><ul class="footer-links"><li><a href="index.html">Басты бет</a></li><li><a href="doctors.html">Дәрігерлер</a></li><li><a href="blog.html">Блог</a></li><li><a href="#footer" onclick="scrollToFooter()">Байланыс</a></li><li><a href="#">Жоба туралы</a></li></ul></div>
+            <div class="col-md-4 mb-4"><h5>Құқықтық ақпарат</h5><ul class="footer-links"><li><a href="#">Лицензиялар</a></li><li><a href="#">Пайдалану шарттары</a></li><li><a href="#">Медициналық жауапкершілік</a></li></ul></div>
+        </div>
+        <div class="social-icons text-center"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
+        <div class="text-center mt-4"><p>© 2026 MedBook.kz. Барлық құқықтар қорғалған</p></div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

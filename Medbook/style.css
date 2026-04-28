@@ -1,0 +1,667 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ========== НАВИГАЦИЯ ========== */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 24px;
+    color: #2c3e50 !important;
+}
+
+/* ========== HERO СЕКЦИЯ ========== */
+.hero-section {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.search-box {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== БАТЫРМАЛАР ========== */
+.btn-primary {
+    background: #3498db;
+    border: none;
+    padding: 12px 24px;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.btn-outline-primary:hover {
+    background: #3498db;
+    color: white;
+}
+
+/* ========== ДӘРІГЕР КАРТОЧКАЛАРЫ ========== */
+.doctor-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    height: 100%;
+}
+
+.doctor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(52, 152, 219, 0.15);
+}
+
+.doctor-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.doctor-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.rating i {
+    margin-right: 2px;
+    font-size: 14px;
+}
+
+.text-warning {
+    color: #f1c40f !important;
+}
+
+/* ========== ФИЛЬТР КАРТОЧКАСЫ ========== */
+.filter-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 20px;
+}
+
+.filter-card h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* ========== БЛОГ КАРТОЧКАЛАРЫ ========== */
+.blog-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-card .blog-content {
+    padding: 20px;
+}
+
+.blog-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.blog-meta {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    display: flex;
+    gap: 15px;
+}
+
+/* ========== АВТОРИЗАЦИЯ МОДАЛЬДЫ ТЕРЕЗЕСІ ========== */
+.auth-modal {
+    border-radius: 24px;
+    border: none;
+}
+
+.role-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.btn-role {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 20px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 140px;
+}
+
+.btn-role:hover {
+    border-color: #3498db;
+    background: #fff;
+    transform: translateY(-3px);
+}
+
+.btn-role i {
+    display: block;
+    font-size: 2rem;
+    color: #3498db;
+}
+
+.btn-role span {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.auth-tab {
+    background: none;
+    border: none;
+    padding: 10px 30px;
+    font-weight: 600;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-tab.active {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    margin-bottom: -2px;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background: #1a2a3a;
+    color: #ecf0f1;
+    padding: 50px 0 20px;
+    margin-top: 60px;
+}
+
+.footer h5 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3498db;
+}
+
+.social-icons {
+    margin: 30px 0 20px;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #3498db;
+    transform: translateY(-3px);
+}
+
+/* ========== ДӘРІГЕР ПРОФИЛІ ========== */
+.doctor-info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.doctor-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ========== РЕЙТИНГ ИНПУТЫ ========== */
+.rating-input i {
+    font-size: 24px;
+    cursor: pointer;
+    color: #bdc3c7;
+    transition: 0.2s;
+}
+
+.rating-input i:hover,
+.rating-input i.fas {
+    color: #f1c40f !important;
+}
+
+/* ============================================= */
+/* ========== ЖАҢА КАЛЕНДАРЬ СТИЛЬДЕРІ ========== */
+/* ============================================= */
+.calendar-container {
+    background: white;
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.calendar-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.calendar-nav-btn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.calendar-nav-btn:hover {
+    background: #e9ecef;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.weekday {
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.weekday.sun {
+    color: #dc3545;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #f8f9fa;
+    position: relative;
+}
+
+.calendar-day:hover:not(.empty):not(.disabled-day) {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+.calendar-day.selected {
+    background: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-day.disabled-day {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #e9ecef;
+}
+
+.calendar-day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.calendar-day.today {
+    border: 2px solid #3498db;
+    font-weight: bold;
+}
+
+/* Жексенбі қызыл түс */
+.calendar-day.sunday:not(.selected) {
+    color: #dc3545;
+}
+
+/* Уақыт слоттары */
+.time-slots-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.time-slot {
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.time-slot:hover:not(.disabled) {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+.time-slot.selected {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.time-slot.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #e9ecef;
+}
+
+/* ========== DARK MODE ========== */
+body.dark-mode {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .doctor-card,
+body.dark-mode .filter-card,
+body.dark-mode .blog-card,
+body.dark-mode .card,
+body.dark-mode .doctor-info-card,
+body.dark-mode .auth-modal .modal-content {
+    background-color: #16213e;
+    color: #e0e0e0;
+    border-color: #0f3460;
+}
+
+body.dark-mode .navbar-light .navbar-brand,
+body.dark-mode .navbar-light .nav-link {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .btn-outline-primary {
+    border-color: #4a6fa5;
+    color: #4a6fa5;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+    background-color: #4a6fa5;
+    color: white;
+}
+
+body.dark-mode .text-muted {
+    color: #aaa !important;
+}
+
+body.dark-mode .footer {
+    background-color: #0a0f1a;
+}
+
+body.dark-mode .hero-section::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .search-box {
+    background-color: #16213e;
+}
+
+body.dark-mode .form-control {
+    background-color: #0f3460;
+    border-color: #1a4a7a;
+    color: #fff;
+}
+
+body.dark-mode .form-control:focus {
+    background-color: #0f3460;
+    color: #fff;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #aaa;
+}
+
+body.dark-mode .modal-content {
+    background-color: #16213e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn-role {
+    background-color: #0f3460;
+    border-color: #1a4a7a;
+}
+
+body.dark-mode .btn-role span {
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn-close {
+    filter: invert(1);
+}
+
+body.dark-mode .rating-input i {
+    color: #aaa;
+}
+
+body.dark-mode .border-bottom {
+    border-color: #0f3460 !important;
+}
+
+/* Календарь Dark Mode */
+body.dark-mode .calendar-container {
+    background: #0f3460;
+}
+
+body.dark-mode .calendar-day {
+    background: #1a4a7a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .calendar-day:hover:not(.empty):not(.disabled-day) {
+    background: #2a5a8a;
+}
+
+body.dark-mode .calendar-nav-btn:hover {
+    background: #1a4a7a;
+}
+
+body.dark-mode .weekday {
+    color: #aaa;
+}
+
+body.dark-mode .calendar-day.today {
+    border-color: #4a6fa5;
+}
+
+body.dark-mode .time-slot {
+    background: #1a4a7a;
+    border-color: #2a5a8a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .time-slot.selected {
+    background: #28a745;
+}
+
+body.dark-mode .time-slot.disabled {
+    background: #0f3460;
+}
+
+/* ========== МЕДИА СҰРАНЫСТАРЫ ========== */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 70vh;
+    }
+    
+    .search-box {
+        padding: 20px;
+    }
+    
+    .role-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-role {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .filter-card {
+        position: static;
+        margin-bottom: 20px;
+    }
+    
+    .blog-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .calendar-container {
+        margin-bottom: 20px;
+    }
+    
+    .calendar-weekdays .weekday {
+        font-size: 11px;
+    }
+    
+    .calendar-day {
+        font-size: 12px;
+    }
+    
+    .time-slot {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .calendar-weekdays .weekday {
+        font-size: 10px;
+    }
+    
+    .calendar-day {
+        font-size: 11px;
+    }
+    
+    .calendar-nav-btn {
+        font-size: 1rem;
+        padding: 3px 8px;
+    }
+    
+    .calendar-header h4 {
+        font-size: 1rem;
+    }
+}

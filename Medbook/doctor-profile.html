@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedBook - Дәрігер профилі</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">MedBook</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Басты бет</a></li>
+                <li class="nav-item"><a class="nav-link" href="doctors.html">Дәрігерлер</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Блог</a></li>
+            </ul>
+            <div class="d-flex align-items-center">
+                <button id="darkModeToggle" class="btn btn-outline-secondary me-2"><i class="fas fa-moon"></i></button>
+                <button class="btn btn-outline-primary me-2" onclick="openAuthModal()">Кіру</button>
+                <button id="profileBtn" class="btn btn-outline-secondary" onclick="viewProfile()" style="display:none;">Профиль</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="doctor-profile py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="doctor-info-card text-center">
+                    <img src="" alt="Дәрігер" class="doctor-avatar" id="doctorAvatar" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%;">
+                    <h3 class="mt-3" id="doctorName"></h3>
+                    <p class="text-muted" id="doctorSpec"></p>
+                    <div class="rating mb-3" id="doctorRating"></div>
+                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="suggestNextAvailable()">
+                        <i class="fas fa-calendar-check"></i> Қабылдауға жазылу
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card p-4">
+                    <h4>Дәрігер туралы</h4>
+                    <div id="doctorBio"></div>
+                    <h4 class="mt-4">Білімі</h4>
+                    <ul id="doctorEducation"></ul>
+                </div>
+                <div class="card p-4 mt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4>Пікірлер</h4>
+                        <button class="btn btn-outline-primary btn-sm" onclick="showReviewForm()">Пікір жазу</button>
+                    </div>
+                    <div id="reviewForm" style="display: none;" class="mb-4">
+                        <textarea id="reviewText" class="form-control mb-2" rows="3" placeholder="Пікіріңізді жазыңыз..."></textarea>
+                        <div class="rating-input mb-2">
+                            <span>Рейтинг: </span>
+                            <i class="far fa-star" onclick="setRating(1)"></i>
+                            <i class="far fa-star" onclick="setRating(2)"></i>
+                            <i class="far fa-star" onclick="setRating(3)"></i>
+                            <i class="far fa-star" onclick="setRating(4)"></i>
+                            <i class="far fa-star" onclick="setRating(5)"></i>
+                        </div>
+                        <button class="btn btn-primary" onclick="addReview()">Жіберу</button>
+                    </div>
+                    <div id="reviewsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- КАЛЕНДАРЬ МОДАЛЫ -->
+<div class="modal fade" id="bookingModal" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-calendar-alt text-primary"></i> Қабылдауға жазылу</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-3" id="selectedDoctorName"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button class="calendar-nav-btn" onclick="prevMonth()">◀</button>
+                                <h4 id="currentMonthYear"></h4>
+                                <button class="calendar-nav-btn" onclick="nextMonth()">▶</button>
+                            </div>
+                            <div class="calendar-weekdays">
+                                <div class="weekday">Дс</div><div class="weekday">Сс</div><div class="weekday">Ср</div>
+                                <div class="weekday">Бс</div><div class="weekday">Жм</div><div class="weekday">Сб</div>
+                                <div class="weekday sun">Жк</div>
+                            </div>
+                            <div class="calendar-days" id="calendarDays"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="fw-bold mb-2">⏰ Уақытты таңдаңыз:</label>
+                        <div id="timeSlots"></div>
+                    </div>
+                </div>
+                <div class="alert alert-info mt-3 small">
+                    <i class="fas fa-info-circle"></i> Жұмыс уақыты: Дс-Жм 09:00-18:00 | Сб 10:00-15:00 | Жк - демалыс
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Жабу</button>
+                <button type="button" class="btn btn-success" id="confirmBookingBtn" onclick="confirmBooking()" disabled>
+                    <i class="fas fa-check-circle"></i> Растау
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- АВТОРИЗАЦИЯ МОДАЛЫ -->
+<div class="modal fade" id="authModal" tabindex="-1">...</div>
+<div class="modal fade" id="profileModal" tabindex="-1">...</div>
+
+<footer class="footer" id="footer">...</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="booking.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const doctor = JSON.parse(localStorage.getItem('currentDoctor'));
+        if (doctor && document.getElementById('selectedDoctorName')) {
+            document.getElementById('selectedDoctorName').innerHTML = `<strong>${doctor.name}</strong> (${doctor.spec})`;
+        }
+    });
+    window.suggestNextAvailable = suggestNextAvailable;
+    window.selectDate = selectDate;
+    window.selectTime = selectTime;
+    window.confirmBooking = confirmBooking;
+    window.prevMonth = prevMonth;
+    window.nextMonth = nextMonth;
+</script>
+</body>
+</html>
